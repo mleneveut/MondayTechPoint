@@ -15,7 +15,10 @@ $ git clone https://github.com/mleneveut/MondayTechPoint.git
 ```sh
 $ git checkout -b "[presentation_name]"
 ```
-
+#####Run : 
+```sh
+$ npm install
+```
 #####Create your slides / themes
 
 #####Configure multiplex (js/reveal-config.js + js/reveal-config-client.js)
