@@ -1,0 +1,122 @@
+Multiplex presentations with Speaker Notes
+
+Created with : https://github.com/hakimel/reveal.js/
+
+
+#h1 Installation : 
+
+Add dependencies 
+
+
+
+#h2 Server : 
+
+#h3 socket.io
+Run socket.io multiplexing :
+	- node plugin/multiplex
+	
+	
+Generate token : http://socketio-server:1948/token
+
+Copy and paste id + secret into your index.html server
+Specify socket.io server url
+
+#h2 Client : 
+
+Copy and paste id into your index.html client
+Specify socket.io server url
+
+Serve static files on your needs : 
+
+server (default port 8080) :
+static
+
+
+client :
+static -p 8081
+
+
+#h1 Using Server Side Speaker Notes
+
+Same manipulations instead of serving your master presentation
+
+Running : node plugin/notes-server into your master directory will run a socket.io server for notes purposes, and serves your master presentation
+
+You can then access your master presentation here : localhost:1947 (default port)
+
+To open your notes, open the JS console and click on the link displayed
+
+
+Installation
+
+Créer des slides
+
+Technique
+
+
+ReverseProxy
+-> /client -> 8081
+-> /admin -> 1947
+
+
+ sudo a2enmod proxy
+
+$ sudo a2enmod proxy_http
+
+restart apache
+
+ServerName presentations.ippon...
+ProxyPreserveHost On
+ProxyRequests off
+ProxyPass /client http://presentations.ippon...:8081
+ProxyPassReverse /client http://presentations.ippon...:8081
+
+
+ Redirect permanent / http://florianlopes.eu:8083/icescrum
+        ProxyRequests Off
+        ProxyPreserveHost On
+        ProxyStatus On
+        ProxyPass /* http://florianlopes.eu:8083/icescrum
+        ProxyPassReverse /* http://florianlopes.eu:8083/icescrum
+
+
+
+différence slide : 
+
+client
+
+master
+
+
+stack -> features
+
+design
+
+install
+
+
+
+repo git  :
+
+
+branches : 
+- techno
+- reveal
+- spring
+
+
+slides : install ippon
+	- install generique
+
+	npm install -g node-static
+
+/deploy-presentation?branch=[branch]
+
+-> script
+	- git pull
+	- git checkout [branch]
+	- cp * ../client/
+	- mv ../client/js/reveal-config-client.js reveal-config.js ----override
+	- node plugin/multiplex
+	- node plugin/notes-server
+	
