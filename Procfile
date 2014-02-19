@@ -1,1 +1,1 @@
-web: node reveal/master/plugin/multiplex
+web: node server.js
