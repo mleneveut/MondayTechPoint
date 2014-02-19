@@ -10,5 +10,3 @@ https://github.com/nodejitsu/node-http-proxy
 npm install
 ```
 
-### Don't remove the "node_modules" folder, it contains node-http-proxy module, wich is not available in the npm registry.
-
