@@ -2,7 +2,7 @@
  * Created by flopes on 19/02/14.
  */
 
-var express = require('../..');
+var express = require('express');
 var app = express();
 
 // log requests
