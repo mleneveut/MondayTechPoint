@@ -4,8 +4,10 @@ MondayTechPoint
 Présentation technique ou autre du Lundi
 
 ## Structure
-- node-http-proxy-server : http server, used to proxy http and websockets; based on node-http-proxy : https://github.com/nodejitsu/node-http-proxy
+- node-http-proxy-server : http server, used to proxy http and websockets
+Based on node-http-proxy : https://github.com/nodejitsu/node-http-proxy
 - reveal : presentations, this is where you can work
+Based on reveal.js : https://github.com/hakimel/reveal.js/
 
 ## Installation
 

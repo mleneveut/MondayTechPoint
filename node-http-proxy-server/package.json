@@ -4,11 +4,9 @@
     "description": "node-http-proxy-server based on node-http-proxy",
     "dependencies": {
         "socket.io": "latest",
-        "node-static": "latest",
         "express": "latest",
         "eventemitter3": "*",
-        "colors": "latest",
-        "konfig": "latest"
+        "colors": "latest"
     },
     "author": "flopes"
 }
