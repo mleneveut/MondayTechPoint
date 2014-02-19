@@ -2,7 +2,7 @@
   "name": "node-proxy-server-presentations",
   "version": "0.0.1",
   "description": "MondayTechPoint\r ===============",
-  "main": "index.js",
+  "main": "node-http-proxy-server/http-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "node node-http-proxy-server/http-server.js",
