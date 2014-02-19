@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "cd reveal/master & npm install",
+    "prestart": "cd reveal/master && npm install",
     "start": "node reveal/master/plugin/multiplex"
   },
   "repository": {
