@@ -4,7 +4,8 @@
   "description": "MondayTechPoint\r ===============",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node node-http-proxy-server/http-server.js & node reveal/master/plugin/multiplex"
   },
   "repository": {
     "type": "git",
