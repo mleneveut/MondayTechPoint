@@ -17,7 +17,7 @@ Reveal.initialize({
         // Example values. To generate your own, see the socket.io server instructions.
         secret: '13921084506082212166', // Obtained from the socket.io server. Gives this (the master) control of the presentation
         id: '6c33a488a7abd3df', // Obtained from socket.io server
-        url: 'http://coding-dojo.ippon-technologies.net' // Location of socket.io server
+        url: 'http://ippon-presentations.herokuapp.com/socket.io' // Location of socket.io server
     },
 
     // Optional libraries used to extend on reveal.js

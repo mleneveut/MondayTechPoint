@@ -1,1 +1,1 @@
-web: node server.js
+worker: sh deploy.sh

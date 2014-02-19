@@ -9,8 +9,8 @@ var http      = require('http'),
     fs        = require('fs'),
     httpProxy = require('./lib/node-http-proxy/lib/http-proxy');
 
-var DOMAIN = "http://coding-dojo.ippon-technologies.net";
-var HTTP_PORT = 80;
+var DOMAIN = "http://ippon-presentations.herokuapp.com";
+var HTTP_PORT = process.env.PORT || 80;
 var PUBLIC_WEB_DIR = __dirname + "/../reveal";
 var SOCKET_PATTERN = "/socket.io/*";
 var SOCKET_PORT = 1948;
