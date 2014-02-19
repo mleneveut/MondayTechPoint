@@ -7,7 +7,7 @@ var http      = require('http'),
     colors    = require('colors'),
     express   = require('express'),
     fs        = require('fs'),
-    httpProxy = require('./node_modules/node-http-proxy/lib/http-proxy');
+    httpProxy = require('./lib/node-http-proxy/lib/http-proxy');
 
 var DOMAIN = "http://coding-dojo.ippon-technologies.net";
 var HTTP_PORT = 80;
