@@ -4,8 +4,8 @@ MondayTechPoint
 Présentation technique ou autre du Lundi
 
 ## Structure
-- node-http-proxy-server : http server, used to proxy http and websockets; based on node-http-proxy : https://github.com/nodejitsu/node-http-proxy
-- reveal : presentations, this is where you can work
+- client : nothing to change, this is where the master project will be copied, and modified, at deployment
+- master : presentation, this is where you can work
 
 ## Installation
 
@@ -24,7 +24,7 @@ $ npm install
 ```
 #####Create your slides / themes
 
-#####Configure multiplex (reveal/master/js/reveal-config.js + reveal/master/js/reveal-config-client.js)
+#####Configure multiplex (master/js/reveal-config.js + master/js/reveal-config-client.js)
 
 #####Commit and push the modifications on the new branch :
 
