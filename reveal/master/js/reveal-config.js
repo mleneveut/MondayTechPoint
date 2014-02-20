@@ -20,14 +20,21 @@ Reveal.initialize({
         url: 'http://ippon-presentations.herokuapp.com/socket.io' // Location of socket.io server
     },
 
+    multiplexHttp: {
+        secret: '13921084506082212166', // Obtained from the socket.io server. Gives this (the master) control of the presentation
+        id: '6c33a488a7abd3df', // Obtained from socket.io server
+        url: 'http://localhost'
+    },
+
     // Optional libraries used to extend on reveal.js
     dependencies: [
         { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
-        { src: 'plugin/multiplex/master.js', async: true },
+        //{ src: 'plugin/multiplex/master.js', async: true },
         { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
         { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: 'plugin/multiplex-http/master.js', async: true},
         // and if you want speaker notes
         //{ src: 'plugin/notes-server/client.js', async: true },
         { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }
