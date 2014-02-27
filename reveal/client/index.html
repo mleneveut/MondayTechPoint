@@ -16,7 +16,6 @@
 
         <link rel="stylesheet" href="css/reveal.min.css">
         <link rel="stylesheet" href="css/theme/ippon.css" id="theme">
-        <link rel="stylesheet" href="js/jquery.modal.css" type="text/css" media="screen" />
 
         <!-- For syntax highlighting -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -40,6 +39,12 @@
             <div class="slides">
             <section>
 
+                <form method="post" action="slidechanged">
+                    <input type="number" name="slidePos">
+                    <input type="text" name="secret" value="13921084506082212166">
+                    <input type="text" name="id" value="6c33a488a7abd3df">
+                    <input type="submit" value="envoyer"/>
+                </form>
                 <h1>Reveal.js</h1><br/>
                 <h2>Broadcast your presentations with notes</h2>
                 <br/>
@@ -484,13 +489,9 @@ multiplex: {
             </section>
 
             </div>
-            <div id="modal" style="display: none;">Failed to synchronize. <br/>
-                Attempting to synchronize master and client(s) ... <img src="img/loader.gif">
-            </div>
 		</div>
 
         <script src="js/jquery-2.1.0.min.js"></script>
-        <script src="js/jquery.modal.min.js"></script>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>

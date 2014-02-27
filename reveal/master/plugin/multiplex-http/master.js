@@ -33,8 +33,8 @@
                 indexf : fragmentindex,
                 nextindexh : nextindexh,
                 nextindexv : nextindexv,
-                secret: multiplex.secret,
-                id : multiplex.id
+                secret: multiplexHttp.secret,
+                id : multiplexHttp.id
             };
 
             sendSlideChanged(slideData);
@@ -49,13 +49,50 @@
         notify( Reveal.getCurrentSlide(), Reveal.getIndices().h, Reveal.getIndices().v, event.origin );
     };
 
-    var sendSlideChanged = function(slideData){
-        console.log("SENDING slide changed");
-        $.ajax({ url: serverUrl + '/currentpos', data: slideData , success: function(data){
-            console.log('slideChanged Event sent');
-        }, dataType: 'json', complete: poll, timeout: 30000 });
-    };
-
     Reveal.addEventListener('fragmentshown', fragmentNotify );
     Reveal.addEventListener('fragmenthidden', fragmentNotify );
+
+    var sendSlideChanged = function(slideData){
+
+        var doRequest = function(){
+            var request = $.ajax({ type: 'POST', url: serverUrl + '/master/slidechanged', data: {'slideData': slideData}, dataType: 'json'});
+            var presentationPaused = false;
+
+            var pausePresentation = function(){
+                if (!presentationPaused){
+                    $('#modal').modal({
+                        fadeDuration: 1000,
+                        fadeDelay: 0.50,
+                        escapeClose: false,
+                        clickClose: false,
+                        showClose: false
+                    });
+                    console.log('Attempting to synchronize master and clients ...');
+                    presentationPaused = true;
+                }
+            };
+
+            var resumePresentation = function(){
+                $.modal.close();
+                Reveal.addEventListeners();
+                presentationPaused = false;
+            };
+
+            request.done(function(data){
+                resumePresentation();
+                console.log('Slide changed event sent');
+            });
+
+            request.fail(function(jqXHR, textStatus, errorThrown){
+                console.log('Failed to send slide change');
+                console.log('textStatus ' + textStatus + 'error : ' + errorThrown);
+                Reveal.removeEventListeners();
+                pausePresentation();
+                // TODO : retry request ?
+            });
+        };
+
+        doRequest();
+    };
+
 }());
