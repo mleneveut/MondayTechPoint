@@ -60,13 +60,15 @@
     var sendSlideChanged = function(slideData){
 
         var doRequest = function(){
+            console.log("Trying request ...");
             var request = $.ajax({ type: 'POST', url: serverUrl + '/master/slidechanged', data: {'slideData': slideData}, dataType: 'json'});
             var presentationPaused = false;
+            var requestSuccedeed = null;
 
             var pausePresentation = function(){
                 if (!presentationPaused){
                     $('#modal').modal({
-                        fadeDuration: 1000,
+                        //fadeDuration: 1000,
                         fadeDelay: 0.50,
                         escapeClose: false,
                         clickClose: false,
@@ -84,6 +86,7 @@
             };
 
             request.done(function(data){
+                requestSuccedeed = true;
                 resumePresentation();
                 console.log('Slide changed event sent');
             });
@@ -91,12 +94,18 @@
             request.fail(function(jqXHR, textStatus, errorThrown){
                 console.log('Failed to send slide change');
                 console.log('textStatus ' + textStatus + 'error : ' + errorThrown);
+                requestSuccedeed = false;
                 Reveal.removeEventListeners();
                 pausePresentation();
                 /**
                  * TODO : In case of connection failure, save last slide position + try request ?
                  */
+                if (requestSuccedeed != null && !requestSuccedeed){
+                    console.log("retrying...");
+                    doRequest();
+                }
             });
+
         };
 
         doRequest();

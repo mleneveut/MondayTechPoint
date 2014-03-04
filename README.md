@@ -6,9 +6,11 @@ Présentation technique ou autre du Lundi
 ## Structure
 #####/node-http-proxy-server
 Http server, used to proxy http and websockets
+
 Based on node-http-proxy : https://github.com/nodejitsu/node-http-proxy
 #####/reveal
 Presentations directory, this is where you can work
+
 Based on reveal.js : https://github.com/hakimel/reveal.js/
 
 ## Installation
@@ -22,7 +24,7 @@ $ git clone https://github.com/mleneveut/MondayTechPoint.git
 ```sh
 $ git checkout -b "[presentation_name]"
 ```
-#####Run : 
+#####Run (in /reveal/master directory) :
 ```sh
 $ npm install
 ```
