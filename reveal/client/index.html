@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
 
-        <title>Reveal.js - Broadcast your presentations with notes</title>
+        <title>Reveal.js - Broadcast your presentations</title>
 
         <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
         <meta name="author" content="Hakim El Hattab">
@@ -16,6 +16,7 @@
 
         <link rel="stylesheet" href="css/reveal.min.css">
         <link rel="stylesheet" href="css/theme/ippon.css" id="theme">
+        <link rel="stylesheet" href="js/jquery.modal.css" type="text/css" media="screen" />
 
         <!-- For syntax highlighting -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -39,20 +40,14 @@
             <div class="slides">
             <section>
 
-                <form method="post" action="slidechanged">
-                    <input type="number" name="slidePos">
-                    <input type="text" name="secret" value="13921084506082212166">
-                    <input type="text" name="id" value="6c33a488a7abd3df">
-                    <input type="submit" value="envoyer"/>
-                </form>
                 <h1>Reveal.js</h1><br/>
-                <h2>Broadcast your presentations with notes</h2>
+                <h2>Broadcast your presentations</h2>
                 <br/>
                 <p>
                     <small>Created by Ippon Bordeaux <br/> <a href="http://www.ippon.fr/">www.ippon.fr</a></small>
                 </p>
                 <aside class="notes">
-                    Broadcast presentations with notes to multiples users thanks to plugins
+                    Broadcast presentations to multiples users thanks to plugins
                 </aside>
             </section>
 
@@ -63,14 +58,15 @@
 
                 <section>
                     <ul>
-                        <li>Share presentations with clients</li> <br/>
-                        <li class="fragment">Display notes on separate device</li> <br/>
-                        <li class="fragment">HTML based fun presentations</li> <br/>
-                    </ul>         <br/>
+                        <li>Share presentations with clients</li><br/>
+                        <li class="fragment">Display notes on separate device</li><br/>
+                        <li class="fragment">HTML based fun presentations</li><br/>
+                    </ul>
+                    <br/>
                     <span class="fragment">And many others ...</span>
                 </section>
 
-                <section>
+               <!-- <section>
                     <h3>Built on top of Node.js</h3>
                     <img src="http://nodejs.org/images/logo.png">
                     <br/>
@@ -98,6 +94,32 @@
                     <small>
                         <a href="https://github.com/cloudhead/node-static" target="_blank">https://github.com/cloudhead/node-static</a>
                     </small>
+                </section>-->
+
+                <section>
+                    <h3>Custom multiplex plugin</h3>
+                    <h4>Ajax Long polling</h4>
+
+                    <div class="diagram">
+                        <img class="stretch" src="img/reveal-multiplex-http-diagram.png">
+                    </div>
+                    <div class="diagram-definition">
+                        <p class="fragment">
+                            Client requests the "current slide" endpoint :
+                            <small>http://localhost/multiplex-http/currentpos</small>
+                        </p>
+
+                        <p class="fragment">
+                            Server receives connection, keeps it opened
+                        </p>
+                        <br/>
+                        <p class="fragment">
+                            On "slide changed" notification (initiated by the master), sends value to the clients
+                        </p>
+                    </div>
+
+                    <br/>
+
                 </section>
 
                 <section>
@@ -115,13 +137,24 @@
                 <section>
                     <h3>Ippon presentations</h3>
                     <h4>How to create and deploy your own presentations ?</h4>
+
+                    <br/>
+
+                    <small>
+                        Prerequisites : <br/>
+                        <ul>
+                            <li>node.js : <a target="_blank" href="www.nodejs.org">www.nodejs.org</a><br/></li>
+                        </ul>
+                    </small>
                 </section>
 
                 <section>
+                    <h4>Installation</h4>
+
                      First, clone the project :
                      <pre>
                          <code data-trim>
-                              $ git clone https://github.com/...
+$ git clone https://github.com/mleneveut/MondayTechPoint.git
                          </code>
                      </pre>
                      In the repository, create your own branch, and switch to it :
@@ -131,11 +164,18 @@ $ git checkout -b "[presentation_name]"
                          </code>
                      </pre>
 
+                    Install dependencies :
+                    <pre>
+                         <code data-trim>
+ $ npm install
+                         </code>
+                     </pre>
+
                 </section>
 
                 <section>
                     Create your slides / themes (we'll see it later)<br/>
-                    Configure multiplex (reveal-config.js + reveal-config-client.js, later again)<br/>
+                    Configure multiplex-http plugin (reveal-config.js + reveal-config-client.js, later again)<br/>
                     Commit and push the modifications on the new branch :
                      <pre>
                          <code data-trim>
@@ -149,17 +189,13 @@ $ git push origin "[presentation_name]"
                      </pre>
                 </section>
 
-                <section>
+              <!--  <section>
                     <h4>Deploy your presentation in "production"</h4>
                     Go to :       <br/>
                     Type your branch into the form <br/>
                     Deploy !   <br/>
                     You can then access your presentation :
-                </section>
-
-            </section>
-
-            <section>
+                </section>-->
 
                 <section>
                     <h2>Design</h2>
@@ -189,7 +225,8 @@ $ git push origin "[presentation_name]"
 
                 <section>
                     <h2>Pretty Code</h2>
-                        <pre><code data-trim contenteditable>
+                        <pre>
+                            <code data-trim contenteditable>
 function linkify( selector ) {
     if( supports3DTransforms ) {
 
@@ -204,8 +241,9 @@ function linkify( selector ) {
         }
     }
 }
-                        </code></pre>
-                    <p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+                            </code>
+                        </pre>
+                    <p>Courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a></p>
                 </section>
 
                 <section data-markdown>
@@ -273,7 +311,7 @@ function linkify( selector ) {
                     Once finished, run :
                          <pre>
                              <code data-trim contenteditable>
-                                 $ grunt themes
+ $ grunt themes
                              </code>
                          </pre>
                     Include it in your html<br/>
@@ -284,10 +322,10 @@ function linkify( selector ) {
                     Bonus : <br/>
                     <a href="http://slid.es" target="_blank">http://slid.es</a>  <br/>
                     <div class="figure">
-                        <div class="image-wrapper" style="background-image: url(../../img/slides-create-4.jpg)"></div>
+                        <div class="image-wrapper" style="background-image: url(../img/slides-create-4.jpg)"></div>
                         <div class="video-wrapper">
                             <video class="stretch" loop="" muted="muted" autoplay="autoplay">
-                                <source src="../../img/slides-create-4.mp4" type="video/mp4">
+                                <source src="../img/slides-create-4.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
@@ -299,30 +337,29 @@ function linkify( selector ) {
                 <section>
                     <h2>Installation</h2>
                     <p>
-                    <h3>Servers :</h3>
-                    <b>Master (with notes) :</b> controls the presentation and displays notes
-                    <br/>
-                    <b>Public presentation server :</b> application to connect to see the presentation
+                        <h3>Servers :</h3>
+                        <b>Master :</b> controls the presentation
+                        <br/>
+                        <b>Public presentation :</b> application to connect to see the presentation
                     </p>
                     <aside class="notes">
                         Prerequisites :
                         <ul>
                             <li>node.js</li>
-                            <li></li>
+                            <li>express.js</li>
                         </ul>
                     </aside>
                 </section>
 
                 <section>
                     <div class="diagram">
-                        <img class="stretch" src="img/reveal-multiplex-diagram.png">
+                        <img class="stretch" src="../img/reveal-multiplex-diagram.png">
                     </div>
                     <div class="diagram-definition">
                         <p> <br/>
-                            <b>Master : </b>controls the show <br/><br/>
-                            <b>Socket server : </b>receives slide change events and broadcast to client<br/><br/>
-                            <b>Public presentation server : </b>same project as the master except that it doesn't have secret <br/>
-
+                            <b>Master application : </b>controls the show <br/><br/>
+                          <!--  <b>Socket server : </b>receives slide change events and broadcast to client<br/><br/>-->
+                            <b>Public presentation application : </b>same project as the master except that it doesn't have secret <br/>
                         </p>
                     </div>
                 </section>
@@ -334,21 +371,21 @@ function linkify( selector ) {
                     Clone project :
                        <pre>
                            <code data-trim>
-                               $ git clone https://github.com/hakimel/reveal.js.git
+$ git clone https://github.com/hakimel/reveal.js.git
                            </code>
                        </pre>
                     Install all needed dependencies :
                         <pre>
                            <code data-trim>
-                               $ npm install
+$ npm install
                            </code>
                        </pre>
-                    Install node-static for static server purposes :
+                <!--    Install node-static for static server purposes :
                        <pre>
                            <code data-trim>
-                               $ npm install -g node-static
+$ npm install -g node-static
                            </code>
-                       </pre>
+                       </pre>-->
                     <aside class="notes">
                         Notes
                     </aside>
@@ -365,10 +402,7 @@ Reveal.initialize({
     dependencies: [
         // Other dependencies
 
-        { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
-        { src: 'plugin/multiplex/master.js', async: true },
-        // speaker notes
-        { src: 'plugin/notes-server/client.js', async: true },
+        { src: 'plugin/multiplex-http/master.js', async: true },
     ]
 });
                             </code>
@@ -378,13 +412,13 @@ Reveal.initialize({
                 <section>
                     <h3>Master</h3>
                     <p>
-                        Launch socket.io :
+                        Launch multiplex-http plugin
                             <pre><code data-trim>
-                                $ node plugin/multiplex
+$ node plugin/multiplex-http
                             </code></pre>
-                    Get a token : <br/>
-                    Go to <a>http://yourserver.com:1948/token</a><br/>
-                    Copy an paste socketId + token into your index.html<br/>
+                    Grab a token : <br/>
+                    Go to <a>http://yourserver.com/multiplex-http/token</a><br/>
+                    Copy an paste socketId + token into your config file<br/>
                     Specify socket.io server url
                     </p>
                     <aside class="notes">
@@ -395,13 +429,13 @@ Reveal.initialize({
 
                 <section>
                     <h3>Master</h3>
-                    Configure multiplex :
+                    Configure multiplex-http :
                         <pre>
                             <code data-trim>
-multiplex: {
+multiplexHttp: {
     secret: '13921084506082212166', // Used to grant master access control
-    id: '6c33a488a7abd3df', // Obtained from socket.io server
-    url: '127.0.0.1:1948' // Location of socket.io server
+    id: '6c33a488a7abd3df', // Obtained from multiplex-http server, create unique channel to communicate
+    url: 'http://localhost' // Location of multiplex-http server
 },
                             </code>
                         </pre>
@@ -425,16 +459,16 @@ multiplex: {
                     Replace this dependency :
                              <pre>
                                 <code data-trim class="javascript">
-                                    { src: 'plugin/multiplex/master.js', async: true },
+{ src: 'plugin/multiplex-http/master.js', async: true },
                                 </code>
                             </pre>
                     By this :
                              <pre>
                                 <code data-trim class="javascript">
-                                    { src: 'plugin/multiplex/client.js', async: true },
+{ src: 'plugin/multiplex-http/client.js', async: true },
                                 </code>
                             </pre>
-                    Delete "notes-server/client.js" dependency
+                    <!--Delete "notes-server/client.js" dependency-->
                     </p>
                     <aside class="notes">
                         The secret value gives master access to the presentation
@@ -445,36 +479,36 @@ multiplex: {
                 <section>
                     <h3>Launch</h3>
                     <p>
-                            <span class="fragment">
+                            <!--<span class="fragment">
                                     Serve client project :
                                  <pre><code data-trim>
                                      $ static
                                  </code></pre>
-                            </span>
+                            </span>-->
 
                             <span class="fragment">
                                 Restart master server :
                                 <pre><code data-trim>
-                                    $ node plugin/multiplex
+$ node plugin/multiplex-http
                                 </code></pre>
                             </span>
-                            <span class="fragment">
+                            <!--<span class="fragment">
                                 Start plugin notes-server :
                                 <pre><code data-trim>
                                     $ node plugin/notes-server
                                 </code></pre>
-                            </span>
+                            </span>-->
                            <span class="fragment">
                                 Access master server and control the show :
                                 <pre><code data-trim>
-                                    http://localhost:1947
+                                    http://localhost/master/
                                 </code></pre>
-                               Open your notes (link displayed in the JS console)<br/>
+                               <!--Open your notes (link displayed in the JS console)<br/>-->
                            </span>
                             <span class="fragment">
                                 Access client presentation :
                                 <pre><code data-trim>
-                                    http://localhost:8080
+                                    http://localhost/client/
                                 </code></pre>
                             </span>
                     </p>
@@ -489,9 +523,13 @@ multiplex: {
             </section>
 
             </div>
+            <div id="modal" style="display: none;">Failed to synchronize ... <br/>
+                <!--Attempting to synchronize master and client(s) ... <img src="img/loader.gif">-->
+            </div>
 		</div>
 
         <script src="js/jquery-2.1.0.min.js"></script>
+        <script src="js/jquery.modal.min.js"></script>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>

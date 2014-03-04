@@ -6,18 +6,15 @@
     var multiplexHttp = Reveal.getConfig().multiplexHttp;
     var serverUrl = multiplexHttp.url;
 
-    $.ajax({url: serverUrl + '/client/currentpos',
+    $.ajax({url: serverUrl + '/multiplex-http/currentpos',
         dataType: 'json',
         success: function(data){
-            console.log(data);
-            Reveal.slide(data.indexh, data.indexv, data.indexf, 'remote');
+            Reveal.slide(parseInt(data.indexh), parseInt(data.indexv), parseInt(data.indexf), 'remote');
             longPoll();
-    },  error: function(jqXHR, textStatus, errorThrown){
+        },  error: function(jqXHR, textStatus, errorThrown){
             console.log(jqXHR);
-            console.log(textStatus);
-            console.log('error ' + 'textStatus' + ' ' + errorThrown);
+            console.log('error ' + 'textStatus' + textStatus + ' ' + errorThrown);
             console.log('Failed to synchronize with master server');
             longPoll();
         }, timeout: 30000});
-
 }());

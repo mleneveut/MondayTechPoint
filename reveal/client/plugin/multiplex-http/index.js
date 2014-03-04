@@ -1,7 +1,7 @@
 /**
  * Created by flopes on 20/02/14.
  * Http-ajax version of multiplex plugin
- * For servers that does not support websockets
+ * In case of server doesn't support websockets / proxying websockets
  */
 
 var express		= require('express');
@@ -14,64 +14,69 @@ var staticDir	= express.static;
 
 var opts = {
     port: 80,
-    baseDir : __dirname + '/../../..'
+    baseDir : __dirname + '/../../../'
 };
 
-console.log(__dirname);
 // Sites to serve
 var sites = [
     {
         path: '/client',
-        dir: opts.baseDir + '/client'
+        dir: opts.baseDir + 'client'
     },
     {
         path: '/master',
-        dir: opts.baseDir + '/master'
+        dir: opts.baseDir + 'master'
     }
 ];
 
-var curSlidePos = 1;
+var connections = [];
+var slideData = null;
 
 app.configure(function() {
-  /*  [ 'css', 'js', 'plugin', 'lib' ].forEach(function(dir) {
-        app.use('/' + dir, staticDir(opts.baseDir + dir));
-    });*/
 
     sites.forEach(function(site){
         app.use(site.path, staticDir(site.dir));
-
-        console.log(site.path);
-        console.log(site.dir);
     });
 
     app.use(express.bodyParser());
 });
 
 app.post('/master/slidechanged', function(req, res){
-    console.log(req.body);
-    if (typeof req.body.secret != 'undefined' && req.body.secret && req.body.secret != ''){
-        if (createHash(req.body.secret) === req.body.id) {
-            if (req.body.slidePos != null && req.body.slidePos != '' && typeof req.body.slidePos != 'undefined'){
-                curSlidePos = req.body.slidePos;
-                console.log('Slide changed : pos ' + curSlidePos);
-                res.send(200);
-                return;
+    if (typeof req.body.slideData.secret != 'undefined' && req.body.slideData.secret && req.body.slideData.secret != ''){
+        if (createHash(req.body.slideData.secret) === req.body.slideData.id) {
+            if (req.body.slideData != null && req.body.slideData != '' && typeof req.body.slideData != 'undefined'){
+                slideData = req.body.slideData;
+                console.log('Received Slide changed event : ' + slideData);
+                notifySlideChanged();
+                res.send();
             }
         }
+    }else{
+        res.send(401);
     }
-    res.send(401);
 });
 
-app.get('/master/token', function(req,res) {
+app.get('/multiplex-http/token', function(req,res) {
     var ts = new Date().getTime();
     var rand = Math.floor(Math.random()*9999999);
     var secret = ts.toString() + rand.toString();
     res.send({secret: secret, socketId: createHash(secret)});
 });
 
-app.get('/client/currentpos', function(req, res){
-    res.send({currentPos: curSlidePos});
+app.get('/multiplex-http/currentpos', function(req, res){
+    // Store reference to respond later
+    connections.push(res);
 });
+
+var notifySlideChanged = function(){
+    connections.forEach(function(res){
+        console.log('sending ... : ');
+        console.log(slideData);
+        slideData.secret = null;
+
+        res.send(JSON.stringify(slideData));
+    });
+};
 
 var createHash = function(secret) {
     var cipher = crypto.createCipher('blowfish', secret);

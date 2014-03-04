@@ -27,6 +27,8 @@
                 nextindexv = 0;
             }
 
+            // future notes support
+            //var notes = slideElement.querySelector('aside.notes');
             var slideData = {
                 indexh : indexh,
                 indexv : indexv,
@@ -35,6 +37,9 @@
                 nextindexv : nextindexv,
                 secret: multiplexHttp.secret,
                 id : multiplexHttp.id
+
+                // future notes support
+                //markdown : notes ? typeof notes.getAttribute('data-markdown') === 'string' : false
             };
 
             sendSlideChanged(slideData);
@@ -88,7 +93,9 @@
                 console.log('textStatus ' + textStatus + 'error : ' + errorThrown);
                 Reveal.removeEventListeners();
                 pausePresentation();
-                // TODO : retry request ?
+                /**
+                 * TODO : In case of connection failure, save last slide position + try request ?
+                 */
             });
         };
 

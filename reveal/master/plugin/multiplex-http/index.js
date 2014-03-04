@@ -1,7 +1,7 @@
 /**
  * Created by flopes on 20/02/14.
  * Http-ajax version of multiplex plugin
- * In case of server doesn't support websockets
+ * In case of server doesn't support websockets / proxying websockets
  */
 
 var express		= require('express');
@@ -46,8 +46,7 @@ app.post('/master/slidechanged', function(req, res){
         if (createHash(req.body.slideData.secret) === req.body.slideData.id) {
             if (req.body.slideData != null && req.body.slideData != '' && typeof req.body.slideData != 'undefined'){
                 slideData = req.body.slideData;
-                console.log('Received Slide changed event : ');
-                console.log(slideData);
+                console.log('Received Slide changed event : ' + slideData);
                 notifySlideChanged();
                 res.send();
             }
@@ -57,14 +56,14 @@ app.post('/master/slidechanged', function(req, res){
     }
 });
 
-app.get('/master/token', function(req,res) {
+app.get('/multiplex-http/token', function(req,res) {
     var ts = new Date().getTime();
     var rand = Math.floor(Math.random()*9999999);
     var secret = ts.toString() + rand.toString();
     res.send({secret: secret, socketId: createHash(secret)});
 });
 
-app.get('/client/currentpos', function(req, res){
+app.get('/multiplex-http/currentpos', function(req, res){
     // Store reference to respond later
     connections.push(res);
 });
@@ -74,6 +73,7 @@ var notifySlideChanged = function(){
         console.log('sending ... : ');
         console.log(slideData);
         slideData.secret = null;
+
         res.send(JSON.stringify(slideData));
     });
 };

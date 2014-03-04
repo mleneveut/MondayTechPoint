@@ -5,7 +5,6 @@ Reveal.initialize({
     progress: true,
     history: true,
     center: true,
-    fragments: true,
 
     theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
     transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
@@ -22,15 +21,13 @@ Reveal.initialize({
 
     // Optional libraries used to extend on reveal.js
     dependencies: [
-        { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js', async: true },
         //{ src: 'plugin/multiplex/master.js', async: true },
         { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
         { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
         { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
         { src: 'plugin/multiplex-http/client.js', async: true},
-        // and if you want speaker notes
-        //{ src: 'plugin/notes-server/client.js', async: true },
+
         { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }
     ]
 });
