@@ -33,10 +33,12 @@ var connections = [];
 var slideData = null;
 
 app.configure(function() {
-
+    console.log('Enabled sites :');
     sites.forEach(function(site){
         app.use(site.path, staticDir(site.dir));
+        console.log(site.path);
     });
+    console.log('\n');
 
     app.use(express.bodyParser());
 });

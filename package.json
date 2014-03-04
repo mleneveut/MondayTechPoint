@@ -1,15 +1,19 @@
 {
-  "name": "node-proxy-server-presentations",
-  "version": "0.0.1",
+  "name": "ajax-http-presentations-server",
+  "version": "1.0.0",
   "description": "MondayTechPoint\r ===============",
-  "main": "node-http-proxy-server/http-server.js",
+  "main": "reveal/master/plugin/multiplex-http",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prestart": "node node-http-proxy-server/http-server.js",
-    "start": "node reveal/master/plugin/multiplex"
+    "install": "cd reveal/master && npm install && cd ../..",
+    "start": "node reveal/master/plugin/multiplex-http",
+    "production": "node deploy.js"
   },
   "engines": {
       "node": "0.10.25"
+  },
+  "dependencies": {
+        "shelljs": "0.2.6"
   },
   "repository": {
     "type": "git",

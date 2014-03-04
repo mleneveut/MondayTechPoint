@@ -24,7 +24,7 @@ $ git clone https://github.com/mleneveut/MondayTechPoint.git
 ```sh
 $ git checkout -b "[presentation_name]"
 ```
-#####Run (in /reveal/master directory) :
+#####Run :
 ```sh
 $ npm install
 ```
@@ -41,13 +41,24 @@ $ git commit -am "Created my presentation..."
 $ git push origin "[presentation_name]"
 ```
 
-##Test your project
+##Deploy project
+
+This script will copy your master project into reveal/client and rename reveal-config-client.js to reveal-config.js
+
 ```sh
-$ node plugin/multiplex-http
+$ npm run-script production
 ```
 
-Go to :
+
+##Run your project
+```sh
+$ npm start
+```
+
+#####Go to
+
 -http://localhost/master/ to control the presentation
+
 -http://localhost/client/ to see the presentation
 
 

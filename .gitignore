@@ -1,1 +1,15 @@
+#Node
+*.log
+node_modules/
+
+#IntelliJ IDEA
+*.iml
 .idea/
+
+#Eclipse
+*.project
+.settings/
+
+
+#Project related settings
+reveal/client/*

@@ -47,7 +47,7 @@
                     <small>Created by Ippon Bordeaux <br/> <a href="http://www.ippon.fr/">www.ippon.fr</a></small>
                 </p>
                 <aside class="notes">
-                    Broadcast presentations to multiples users thanks to plugins
+                    Broadcast presentations to multiple users thanks to multiplex-http plugin
                 </aside>
             </section>
 
@@ -149,7 +149,7 @@
                 </section>
 
                 <section>
-                    <h4>Installation</h4>
+                    <h4>Get started</h4>
 
                      First, clone the project :
                      <pre>
@@ -175,7 +175,7 @@ $ git checkout -b "[presentation_name]"
 
                 <section>
                     Create your slides / themes (we'll see it later)<br/>
-                    Configure multiplex-http plugin (reveal-config.js + reveal-config-client.js, later again)<br/>
+                    Configure multiplex-http plugin (reveal-config.js + reveal-config-client.js, later again)<br/><br/>
                     Commit and push the modifications on the new branch :
                      <pre>
                          <code data-trim>
@@ -189,7 +189,7 @@ $ git push origin "[presentation_name]"
                      </pre>
                 </section>
 
-              <!--  <section>
+             <!--   <section>
                     <h4>Deploy your presentation in "production"</h4>
                     Go to :       <br/>
                     Type your branch into the form <br/>
@@ -278,7 +278,7 @@ function linkify( selector ) {
                     Demo
                 </section>
 
-                <!--<section id="themes">
+             <!--   <section id="themes">
                     <h3>Themes</h3>
                     You can simply change theme.<br/>
                     Choice your prefered flavour !    <br/><br/>
@@ -322,10 +322,10 @@ function linkify( selector ) {
                     Bonus : <br/>
                     <a href="http://slid.es" target="_blank">http://slid.es</a>  <br/>
                     <div class="figure">
-                        <div class="image-wrapper" style="background-image: url(../img/slides-create-4.jpg)"></div>
+                        <div class="image-wrapper" style="background-image: url(img/slides-create-4.jpg)"></div>
                         <div class="video-wrapper">
                             <video class="stretch" loop="" muted="muted" autoplay="autoplay">
-                                <source src="../img/slides-create-4.mp4" type="video/mp4">
+                                <source src="img/slides-create-4.mp4" type="video/mp4">
                             </video>
                         </div>
                     </div>
@@ -353,7 +353,7 @@ function linkify( selector ) {
 
                 <section>
                     <div class="diagram">
-                        <img class="stretch" src="../img/reveal-multiplex-diagram.png">
+                        <img class="stretch" src="img/reveal-multiplex-diagram.png">
                     </div>
                     <div class="diagram-definition">
                         <p> <br/>
@@ -417,8 +417,11 @@ Reveal.initialize({
 $ node plugin/multiplex-http
                             </code></pre>
                     Grab a token : <br/>
+
                     Go to <a>http://yourserver.com/multiplex-http/token</a><br/>
+
                     Copy an paste socketId + token into your config file<br/>
+
                     Specify socket.io server url
                     </p>
                     <aside class="notes">
@@ -433,7 +436,7 @@ $ node plugin/multiplex-http
                         <pre>
                             <code data-trim>
 multiplexHttp: {
-    secret: '13921084506082212166', // Used to grant master access control
+    secret: '13921084506082212166', // Used to grant master control
     id: '6c33a488a7abd3df', // Obtained from multiplex-http server, create unique channel to communicate
     url: 'http://localhost' // Location of multiplex-http server
 },
@@ -487,7 +490,7 @@ multiplexHttp: {
                             </span>-->
 
                             <span class="fragment">
-                                Restart master server :
+                                Restart master server (into /reveal/master/ directory) :
                                 <pre><code data-trim>
 $ node plugin/multiplex-http
                                 </code></pre>
@@ -513,7 +516,7 @@ $ node plugin/multiplex-http
                             </span>
                     </p>
                     <aside class="notes">
-                        The secret value gives master access to the presentation
+                        The secret value gives master control to the presentation
                         The socketId create unique channel to communicate
 
                         You can customize note display at plugin/notes-server/notes.html
@@ -524,7 +527,7 @@ $ node plugin/multiplex-http
 
             </div>
             <div id="modal" style="display: none;">Failed to synchronize ... <br/>
-                <!--Attempting to synchronize master and client(s) ... <img src="img/loader.gif">-->
+                Attempting to synchronize master and client(s) ... <img src="img/loader.gif">
             </div>
 		</div>
 
