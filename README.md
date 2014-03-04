@@ -43,7 +43,9 @@ $ git push origin "[presentation_name]"
 
 ##Deploy project
 
-This script will copy your master project into reveal/client and rename reveal-config-client.js to reveal-config.js
+This script will copy your master project into *reveal/client* and rename *reveal-config-client.js* to *reveal-config.js*
+
+*Ensure your "deploy.sh" file is executable*
 
 ```sh
 $ npm run-script production
@@ -57,9 +59,9 @@ $ npm start
 
 #####Go to
 
--http://localhost/master/ to control the presentation
+- [http://localhost/master/](http://localhost/master/ Master presentation) to control the presentation
 
--http://localhost/client/ to see the presentation
+- [http://localhost/client/](http://localhost/client/ Client presentation) to see the presentation
 
 
 ## Multiplex-http plugin
@@ -67,4 +69,4 @@ $ npm start
 
 
 
-www.ippon.fr
+[www.ippon.fr]

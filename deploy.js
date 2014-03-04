@@ -4,7 +4,8 @@
 
 var childProcess = require('child_process');
 
-childProcess.exec('deploy.sh ', function(error, stdout, stderr){
+// Delete './' before 'deploy.sh' to run in Windows environments
+childProcess.exec('./deploy.sh ', function(error, stdout, stderr){
     var success = false;
     var logs;
     if (error == ''){
