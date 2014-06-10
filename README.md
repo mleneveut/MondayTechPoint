@@ -51,7 +51,7 @@ $ npm start
 
 
 ## Multiplex-http plugin
-![Multiplex-http plugin architecture](reveal/master/img/reveal-multiplex-http-diagram.png)
+![Multiplex-http plugin architecture](master/img/reveal-multiplex-http-diagram.png)
 
 
 
