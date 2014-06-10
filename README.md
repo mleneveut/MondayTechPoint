@@ -5,7 +5,7 @@ Présentation technique ou autre du Lundi
 
 ## Structure
 - client : nothing to change, this is where the master project will be copied, and modified, at deployment
-- master : presentation, this is where create you presentation
+- master : this is where you create your presentation
 
 ## Installation
 
