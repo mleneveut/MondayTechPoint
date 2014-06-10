@@ -6,8 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "cd reveal/master && npm install && cd ../..",
-    "start": "node reveal/master/plugin/multiplex-http",
-    "production": "node deploy.js"
+    "start": "node /master/plugin/multiplex-http",
+    "production": "node tools/deploy.js"
   },
   "engines": {
       "node": "0.10.25"

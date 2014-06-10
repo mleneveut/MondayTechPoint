@@ -4,14 +4,8 @@ MondayTechPoint
 Présentation technique ou autre du Lundi
 
 ## Structure
-#####/node-http-proxy-server
-Http server, used to proxy http and websockets
-
-Based on node-http-proxy : https://github.com/nodejitsu/node-http-proxy
-#####/reveal
-Presentations directory, this is where you can work
-
-Based on reveal.js : https://github.com/hakimel/reveal.js/
+- client : nothing to change, this is where the master project will be copied, and modified, at deployment
+- master : presentation, this is where create you presentation
 
 ## Installation
 
@@ -24,26 +18,18 @@ $ git clone https://github.com/mleneveut/MondayTechPoint.git
 ```sh
 $ git checkout -b "[presentation_name]"
 ```
-#####Run :
+#####Retrieve dependencies : 
 ```sh
 $ npm install
 ```
 #####Create your slides / themes
 
-#####Configure multiplex-http plugin (reveal/master/js/reveal-config.js + reveal/master/js/reveal-config-client.js)
+#####Configure multiplex (master/js/reveal-config.js + master/js/reveal-config-client.js)
 
-#####Commit and push the modifications on the new branch :
-
-```sh
-$ git commit -am "Created my presentation..."
-```
-```sh
-$ git push origin "[presentation_name]"
-```
 
 ##Deploy project
 
-This script will copy your master project into *reveal/client* and rename *reveal-config-client.js* to *reveal-config.js*
+This script will copy your master project into */client* and rename *reveal-config-client.js* to *reveal-config.js*
 
 *Ensure your "deploy.sh" file is executable*
 
@@ -69,4 +55,4 @@ $ npm start
 
 
 
-[www.ippon.fr]
+www.ippon.fr
