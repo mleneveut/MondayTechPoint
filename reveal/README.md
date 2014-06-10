@@ -26,7 +26,17 @@ $ npm install
 
 #####Configure multiplex (master/js/reveal-config.js + master/js/reveal-config-client.js)
 
-#####Commit and push the modifications on the new branch :
+#####Launch presentation :
+
+```sh
+node plugin/multiplex-http
+```
+
+####See your presentation at : 
+localhost/master/
+localhost/client/
+
+#####Commit and push the modifications to the new branch :
 
 ```sh
 $ git commit -am "Created my presentation..."
